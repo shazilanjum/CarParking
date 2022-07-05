@@ -1,0 +1,140 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CarParkingCalculator
+{
+    public class Vehicle
+    {
+        double time;
+        double baseRate,maxFare,incFare;
+        public double FareCalculator()
+        {
+            double Fare;
+            if(time<3)
+            {
+                Fare = baseRate;
+            }
+            else 
+            {
+                Fare = baseRate+(time-3)*incFare;
+                if(Fare>maxFare)
+                {
+                    Fare=maxFare;
+                }
+            }
+            
+            
+            return Fare;
+        }
+        
+         
+    }
+    
+    public class Bike : Vehicle
+    {
+        public double baseRate = 2, maxFare = 10, incFare = 0.5;
+        double parkTime;
+        public double FareCalculator()
+        {
+            double Fare;
+            if (parkTime < 3)
+            {
+                Fare = baseRate;
+            }
+            else
+            {
+                Fare = baseRate + (parkTime - 3) * incFare;
+                if (Fare > maxFare)
+                {
+                    Fare = maxFare;
+                }
+            }
+
+
+            return Fare;
+        }
+        public Bike(int time)
+        {
+            parkTime = time;
+            
+        }
+
+    }
+    public class Car : Vehicle
+    {
+        public double baseRate = 4, maxFare = 20, incFare = 1;
+        double parkTime;
+        public double FareCalculator()
+        {
+            double Fare;
+            if (parkTime < 3)
+            {
+                Fare = baseRate;
+            }
+            else
+            {
+                Fare = baseRate + (parkTime - 3) * incFare;
+                if (Fare > maxFare)
+                {
+                    Fare = maxFare;
+                }
+            }
+
+
+            return Fare;
+        }
+        public Car(double time)
+        {
+            parkTime = time;
+        }
+
+    }
+    public class Bus : Vehicle
+    {
+        public double baseRate = 6, maxFare = 30, incFare = 1.5;
+        double parkTime;
+        public double FareCalculator()
+        {
+            double Fare;
+            if (parkTime < 3)
+            {
+                Fare = baseRate;
+            }
+            else
+            {
+                Fare = baseRate + (parkTime - 3) * incFare;
+                if (Fare > maxFare)
+                {
+                    Fare = maxFare;
+                }
+            }
+
+
+            return Fare;
+        }
+        public Bus(double time)
+        {
+            parkTime = time;
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Bike myBike = new Bike(24);
+            Car myCar = new Car(1);
+            Bus myBus = new Bus(5);
+
+            
+            Console.WriteLine("The parking fare for bike is $" + myBike.FareCalculator());
+            Console.WriteLine("The parking fare for car is $" + myCar.FareCalculator());
+            Console.WriteLine("The parking fare for bus is $" + myBus.FareCalculator());
+            Console.ReadKey();
+        }
+    }
+}
